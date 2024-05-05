@@ -6,13 +6,21 @@
  * @throws {TypeError} Sequence can only contain numbers and whitespace
  */
 
-export function cleanString(input: string): string {
+import chalk from "chalk";
+
+export function cleanString(input: string): string | number {
 	if (input.trim().length === 0) {
-		throw RangeError("Sequence cannot be empty");
+		// throw RangeError("Sequence cannot be empty");
+		console.log(chalk.red("Sequence cannot be empty\n"));
+		return 0;
 	}
 
 	if (!/^[0-9 ]+$/.test(input)) {
-		throw TypeError("Sequence must only contain numbers and whitespace");
+		// throw TypeError("Sequence must only contain numbers and whitespace");
+		console.log(
+			chalk.red("Sequence must only contain numbers and whitespace\n")
+		);
+		return 0;
 	}
 
 	return (input.match(/\d+/g) || []).join(",");
