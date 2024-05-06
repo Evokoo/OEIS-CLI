@@ -3,27 +3,30 @@
 import chalk from "chalk";
 import inquirer from "inquirer";
 import { program } from "commander";
-
 import { cleanString } from "./validation.js";
-import { getResults } from "./fetch.js";
+import { getResults } from "./results.js";
 
 program.version("1.0.0").description("oeis-cli");
 
-function reset() {
+function initProgram() {
+	getTitle();
+
 	program.action(() => {
 		inquirer
 			.prompt([
 				{
 					type: "input",
 					name: "sequence",
-					message: "Enter a number sequence seperated with a space\n\n",
+					message: chalk.blue.bold(
+						"Enter a number sequence seperated with a space"
+					),
 				},
 			])
 			.then((response) => {
 				const sequence: string | number = cleanString(response.sequence);
 
 				if (sequence === 0) {
-					return reset();
+					return initProgram();
 				} else {
 					getResults(sequence as string);
 				}
@@ -33,4 +36,8 @@ function reset() {
 	program.parse(process.argv);
 }
 
-reset();
+initProgram();
+
+function getTitle(): void {
+	console.log(chalk.yellow.bold("OEIS Quick Search"));
+}
