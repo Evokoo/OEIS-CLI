@@ -4,18 +4,24 @@
 	"version": "0.0.0",
 	"type": "module",
 	"bin": {
-		"oeis-cli": "./dist/index.js"
+		"oeis-cli-dev": "./dist/index.js",
+		"oeis-cli": "./build/oeis-cli.js"
 	},
 	"scripts": {
-		"ts-watch": "tsc --watch"
+		"ts-watch": "tsc --watch",
+		"build": "rollup -c"
 	},
 	"devDependencies": {
-		"@types/axios": "^0.14.0",
-		"@types/bun": "latest",
+		"@rollup/plugin-commonjs": "^25.0.7",
+		"@rollup/plugin-json": "^6.1.0",
+		"@rollup/plugin-node-resolve": "^15.2.3",
+		"@rollup/plugin-terser": "^0.4.4",
+		"@rollup/plugin-typescript": "^11.1.6",
+		"@types/bun": "^1.1.1",
 		"@types/figlet": "^1.5.8",
 		"@types/inquirer": "^9.0.7",
-		"@types/node": "^20.12.8",
-		"@types/ora": "^3.2.0",
+		"@types/node": "^20.12.10",
+		"rollup": "^4.17.2",
 		"typescript": "^5.2.2"
 	},
 	"dependencies": {
