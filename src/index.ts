@@ -9,8 +9,10 @@ import { getResults } from "./results.js";
 program.version("1.0.0").description("oeis-cli");
 
 function initProgram() {
-	getTitle();
+	//Title
+	console.log(chalk.yellow.bold("OEIS Quick Search"));
 
+	//Prompt
 	program.action(() => {
 		inquirer
 			.prompt([
@@ -37,7 +39,3 @@ function initProgram() {
 }
 
 initProgram();
-
-function getTitle(): void {
-	console.log(chalk.yellow.bold("OEIS Quick Search"));
-}
